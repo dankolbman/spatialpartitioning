@@ -23,7 +23,7 @@ def plotSys():
   fig = plt.gcf()
   ax = fig.gca()
   xpos, ypos = readParts('parts.dat')
-  circleScatter(xpos, ypos, ax, radius=1)
+  circleScatter(xpos, ypos, ax, radius=0.5)
   #s = [conf['diameter']**2/4*3.1415 for i in range(len(xpos))]
   #plt.scatter(xpos, ypos,color=colors[(i)%3])
 
@@ -36,9 +36,9 @@ def plotBounds( axes):
   """ plotBounds : Dict Axes -> True
   Makes a rectangle or circle depending on the geometry of the boundary
   """
-  plt.xlim((0, 100))
-  plt.ylim((0,100))
-  shape = plt.Rectangle((0, 0), 100, 100)
+  plt.xlim((-10, 510))
+  plt.ylim((-10, 510))
+  shape = plt.Rectangle((0, 0), 510, 510)
   shape.fill = False
   axes.add_artist(shape)
   return True
@@ -49,7 +49,8 @@ def circleScatter(xpos, ypos, axes, **kwargs):
   """
   #for x,y in zip(xpos, ypos):
   for i in range(len(xpos)):
-    circle = plt.Circle((xpos[i],ypos[i]), **kwargs)
+    #circle = plt.Circle((xpos[i],ypos[i]), color=str(i/len(xpos)), **kwargs)
+    circle = plt.Circle((xpos[i],ypos[i]), color='b', **kwargs)
     axes.add_patch(circle)
 
   return True
